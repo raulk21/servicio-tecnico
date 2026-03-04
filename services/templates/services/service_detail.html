@@ -1,0 +1,62 @@
+{% extends 'services/base.html' %}
+
+{% if service.image %}
+    <img src="{{ service.image.url }}" class="img-fluid mb-3">
+{% endif %}
+
+{% block title %}{{ service.title }}{% endblock %}
+
+{% block content %}
+
+<div class="card shadow">
+    <div class="card-body">
+        <h2>{{ service.title }}</h2>
+        <h5 class="text-muted">{{ service.category }}</h5>
+
+        <hr>
+
+        <h4 class="mt-4">Solicitar diagnóstico</h4>
+
+        <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    
+        <div class="mb-3">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.phone.label_tag }}
+            {{ form.phone }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.message.label_tag }}
+            {{ form.message }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.image.label_tag }}
+            {{ form.image }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Enviar solicitud
+        </button>
+    </form>
+
+        <p>{{ service.description }}</p>
+
+        <p><strong>Tiempo estimado:</strong> {{ service.estimated_time }}</p>
+        <p><strong>Precio referencia:</strong> {{ service.reference_price }}</p>
+
+        <a href="/" class="btn btn-secondary mt-3">Volver</a>
+    </div>
+</div>
+
+{% endblock %}

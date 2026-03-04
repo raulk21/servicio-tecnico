@@ -1,0 +1,69 @@
+from django.shortcuts import render,  get_object_or_404, redirect
+from .models import Service, ContactRequest
+from .forms import ContactRequestForm
+from django.core.mail import send_mail
+
+
+def home(request):
+    services = Service.objects.all()
+    return render(request, 'services/home.html', {'services': services})
+
+def service_detail(request, service_id):
+    service = get_object_or_404(Service, id=service_id)
+
+    if request.method == 'POST':
+        form = ContactRequestForm(request.POST, request.FILES)
+        if form.is_valid():
+            contact = form.save(commit=False)
+            contact.service = service
+            contact.save()
+            send_mail(
+            subject=f"Tu orden {contact.order_number} fue registrada",
+            message=f"""
+            Hola {contact.name},
+
+                Tu solicitud fue recibida correctamente.
+
+                Número de orden: {contact.order_number}
+                Servicio: {contact.service.title}
+                Estado actual: Pendiente
+
+                Gracias por confiar en nuestro servicio técnico.
+                """,
+            from_email="servicio@taller.com",
+            recipient_list=[contact.email],
+            fail_silently=False,
+            )
+            return redirect('request_success', request_id=contact.id)
+    else:
+        form = ContactRequestForm()
+
+    return render(request, 'services/service_detail.html', {
+        'service': service,
+        'form': form
+    })
+
+def request_success(request, request_id):
+    contact = ContactRequest.objects.get(id=request_id)
+    return render(request, 'services/request_success.html', {
+        'contact': contact
+    }) 
+
+def track_order(request):
+    order = None
+    error = None
+
+    if request.method == "POST":
+        order_number = request.POST.get("order_number")
+
+        try:
+            order = ContactRequest.objects.get(order_number=order_number)
+        except ContactRequest.DoesNotExist:
+            error = "Número de orden no encontrado"
+
+    return render(request, "services/track_order.html", {
+        "order": order,
+        "error": error
+    })
+
+# Create your views here.

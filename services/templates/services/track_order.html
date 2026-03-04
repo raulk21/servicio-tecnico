@@ -1,0 +1,43 @@
+{% extends "services/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <div class="card p-4 shadow">
+        <h2 class="text-center mb-4">Consultar estado de reparación</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Número de orden</label>
+                <input type="text" name="order_number" class="form-control" placeholder="OT-2026-0001" required>
+            </div>
+            <button type="submit" class="btn btn-dark w-100">Consultar</button>
+        </form>
+
+        {% if error %}
+            <div class="alert alert-danger mt-3">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        {% if order %}
+            <div class="mt-4 text-center">
+                <h4>Resultado:</h4>
+                <p><strong>Servicio:</strong> {{ order.service.title }}</p>
+                <p><strong>Cliente:</strong> {{ order.name }}</p>
+
+                {% if order.status == 'pendiente' %}
+                    <span class="badge bg-warning text-dark fs-5">Pendiente</span>
+                {% elif order.status == 'proceso' %}
+                    <span class="badge bg-primary fs-5">En proceso</span>
+                {% elif order.status == 'finalizado' %}
+                    <span class="badge bg-success fs-5">Finalizado</span>
+                {% endif %}
+            </div>
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}

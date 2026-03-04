@@ -1,0 +1,43 @@
+{% extends 'services/base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+
+<div class="text-center mb-5">
+    <h1 class="display-4">Servicio Técnico Electrónico</h1>
+    <p class="lead">Diagnóstico y reparación profesional de placas electrónicas</p>
+</div>
+
+<div class="row">
+    {% for service in services %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                {% if service.image %}
+                <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{% url 'service_detail' service.id %}" class="text-decoration-none">
+                        {{ service.title }}
+                        </a>
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        {{ service.category }}
+                    </h6>
+                    <p class="card-text">
+                        {{ service.description|truncatewords:20 }}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">
+                        Tiempo: {{ service.estimated_time }} <br>
+                        Precio ref: {{ service.reference_price }}
+                    </small>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

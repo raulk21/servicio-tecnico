@@ -1,0 +1,28 @@
+{% extends "services/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <div class="card shadow p-4 text-center">
+        <h2 class="mb-3">Solicitud enviada correctamente</h2>
+
+        <p><strong>Servicio:</strong> {{ contact.service.title }}</p>
+        <p><strong>Nombre:</strong> {{ contact.name }}</p>
+
+        <h4 class="mt-4">Estado actual:</h4>
+
+        {% if contact.status == 'pendiente' %}
+            <span class="badge bg-warning text-dark fs-5">Pendiente</span>
+        {% elif contact.status == 'proceso' %}
+            <span class="badge bg-primary fs-5">En proceso</span>
+        {% elif contact.status == 'finalizado' %}
+            <span class="badge bg-success fs-5">Finalizado</span>
+        {% endif %}
+
+        <div class="mt-4">
+            <a href="/" class="btn btn-outline-dark">Volver al inicio</a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
