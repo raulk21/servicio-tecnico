@@ -62,7 +62,7 @@ def service_detail(request, service_id):
                 email.attach_file(contact.image.path)
 
             email.send(fail_silently=False)
-            
+
             return redirect('request_success', request_id=contact.id)
     else:
         form = ContactRequestForm()
@@ -88,11 +88,12 @@ def track_order(request):
         try:
             order = ContactRequest.objects.get(order_number=order_number)
         except ContactRequest.DoesNotExist:
-            error = "Número de orden no encontrado"
+            error = "Orden no encontrada"
 
     return render(request, "services/track_order.html", {
         "order": order,
         "error": error
     })
+
 
 # Create your views here.
