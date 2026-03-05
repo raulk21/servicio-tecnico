@@ -1,0 +1,35 @@
+{% extends 'services/base.html' %}
+
+{% block content %}
+
+<h2>Consulta de reparación</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <input type="text" name="order_number" placeholder="Ej: ST-0003" class="form-control mb-3">
+
+    <button type="submit" class="btn btn-primary">
+        Consultar
+    </button>
+</form>
+
+{% if order %}
+
+<hr>
+
+<h4>Resultado</h4>
+
+<p><strong>Orden:</strong> {{ order.order_number }}</p>
+<p><strong>Cliente:</strong> {{ order.name }}</p>
+<p><strong>Servicio:</strong> {{ order.service }}</p>
+<p><strong>Estado:</strong> {{ order.get_status_display }}</p>
+<p><strong>Fecha:</strong> {{ order.created_at }}</p>
+
+{% endif %}
+
+{% if error %}
+<p class="text-danger">{{ error }}</p>
+{% endif %}
+
+{% endblock %}

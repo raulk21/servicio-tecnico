@@ -96,4 +96,23 @@ def track_order(request):
     })
 
 
+from django.shortcuts import render
+from .models import ContactRequest
+
+def check_order(request):
+    order = None
+    error = None
+
+    if request.method == "POST":
+        order_number = request.POST.get("order_number")
+
+        try:
+            order = ContactRequest.objects.get(order_number=order_number)
+        except ContactRequest.DoesNotExist:
+            error = "Orden no encontrada"
+
+    return render(request, "services/check_order.html", {
+        "order": order,
+        "error": error
+    })
 # Create your views here.
