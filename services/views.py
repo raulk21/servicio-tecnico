@@ -2,6 +2,7 @@ from django.shortcuts import render,  get_object_or_404, redirect
 from .models import Service, ContactRequest
 from .forms import ContactRequestForm
 from django.core.mail import send_mail
+from django.conf import settings
 
 
 def home(request):
@@ -30,7 +31,8 @@ def service_detail(request, service_id):
 
                 Gracias por confiar en nuestro servicio técnico.
                 """,
-            from_email="servicio@taller.com",
+            #from_email="servicio@taller.com",
+            from_email=f"Servicio Técnico <{settings.EMAIL_HOST_USER}>",
             recipient_list=[contact.email],
             fail_silently=False,
             )
