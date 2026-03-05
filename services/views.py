@@ -18,6 +18,7 @@ def service_detail(request, service_id):
             contact = form.save(commit=False)
             contact.service = service
             contact.save()
+            print(settings.EMAIL_HOST_USER)
             send_mail(
             subject=f"Tu orden {contact.order_number} fue registrada",
             message=f"""
@@ -35,10 +36,8 @@ def service_detail(request, service_id):
             
             from_email=f"Servicio Técnico <{settings.EMAIL_HOST_USER}>",
             recipient_list=[contact.email],
-            fail_silently=False,
-           
+            fail_silently=False,     
             )
-            print(settings.EMAIL_HOST_USER)
             return redirect('request_success', request_id=contact.id)
     else:
         form = ContactRequestForm()
