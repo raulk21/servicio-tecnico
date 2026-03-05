@@ -3,6 +3,7 @@ from .models import Service, ContactRequest
 from .forms import ContactRequestForm
 from django.core.mail import send_mail
 from django.conf import settings
+from django.core.mail import EmailMessage
 
 
 def home(request):
@@ -20,7 +21,7 @@ def service_detail(request, service_id):
             contact.save()
             print(settings.EMAIL_HOST_USER)
             send_mail(
-            subject=f"Tu orden {contact.order_number} fue registrada",
+            subject=f"Confirmación de orden {contact.order_number} fue registrada",
             message=f"""
             Hola {contact.name},
 
@@ -38,6 +39,30 @@ def service_detail(request, service_id):
             recipient_list=[contact.email],
             fail_silently=False,     
             )
+
+            # correo para tu negocio
+            email = EmailMessage(
+                subject=f"Nueva orden {contact.order_number}",
+                body=f"""
+            Nueva orden recibida
+
+            Número de orden: {contact.order_number}
+
+            Nombre: {contact.name}
+            Teléfono: {contact.phone}
+            Email: {contact.email}
+
+            Mensaje del cliente:
+            {contact.message}
+            """,
+                from_email=settings.EMAIL_HOST_USER,
+                to=["servicio.tecnico.elect21@gmail.com"],
+            )
+            if contact.image:
+                email.attach_file(contact.image.path)
+
+            email.send(fail_silently=False)
+            
             return redirect('request_success', request_id=contact.id)
     else:
         form = ContactRequestForm()
