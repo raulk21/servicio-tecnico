@@ -32,10 +32,13 @@ def service_detail(request, service_id):
                 Gracias por confiar en nuestro servicio técnico.
                 """,
             #from_email="servicio@taller.com",
+            
             from_email=f"Servicio Técnico <{settings.EMAIL_HOST_USER}>",
             recipient_list=[contact.email],
             fail_silently=False,
+           
             )
+            print(settings.EMAIL_HOST_USER)
             return redirect('request_success', request_id=contact.id)
     else:
         form = ContactRequestForm()
