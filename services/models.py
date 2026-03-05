@@ -25,10 +25,12 @@ class Service(models.Model):
 class ContactRequest(models.Model):
 
     STATUS_CHOICES = [
-        ('pendiente', 'Pendiente'),
-        ('proceso', 'En proceso'),
-        ('finalizado', 'Finalizado'),
-    ]
+    ('pendiente', 'Pendiente'),
+    ('diagnostico', 'En diagnóstico'),
+    ('proceso', 'En reparación'),
+    ('espera', 'Esperando repuesto'),
+    ('finalizado', 'Finalizado'),
+]
 
     order_number = models.CharField(max_length=20, unique=True, blank=True)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
