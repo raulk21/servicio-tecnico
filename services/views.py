@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.contrib.admin.views.decorators import staff_member_required
+from django.db.models import Q
 
 
 
@@ -144,12 +145,21 @@ def update_order_status(request, order_id, new_status):
 
 def workshop_panel(request):
 
+    buscar = request.GET.get("buscar")
     status = request.GET.get("status")
     orders = ContactRequest.objects.all()
+
+    # filtro por texto
+    if buscar:
+        orders = orders.filter(
+            Q(name__icontains=buscar) |
+            Q(id__icontains=buscar)
+        )
+        
     if status:
         orders = orders.filter(status=status)
     orders = orders.order_by("-created_at")
-    
+
     pendientes = ContactRequest.objects.filter(status="pendiente").count()
     diagnostico = ContactRequest.objects.filter(status="diagnostico").count()
     proceso = ContactRequest.objects.filter(status="proceso").count()
