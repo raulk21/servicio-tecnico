@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <h2>Panel de Cliente</h2>
+
+    <form method="get">
+        <input type="email" name="email" placeholder="Ingrese su correo" required>
+        <button class="btn btn-primary">Ver mis órdenes</button>
+    </form>
+
+    {% if orders %}
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>Orden</th>
+                <th>Equipo</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.order_number }}</td>
+                <td>{{ order.device }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>

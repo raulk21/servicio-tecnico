@@ -4,6 +4,7 @@ from .forms import ContactRequestForm
 from django.core.mail import send_mail
 from django.conf import settings
 from django.core.mail import EmailMessage
+from .models import RepairOrder
 
 
 def home(request):
@@ -95,10 +96,6 @@ def track_order(request):
         "error": error
     })
 
-
-from django.shortcuts import render
-from .models import ContactRequest
-
 def check_order(request):
     order = None
     error = None
@@ -115,4 +112,13 @@ def check_order(request):
         "order": order,
         "error": error
     })
+
+def client_panel(request):
+    email = request.GET.get("email")
+
+    orders = None
+    if email:
+        orders = RepairOrder.objects.filter(email=email)
+
+    return render(request, "client_panel.html", {"orders": orders})
 # Create your views here.

@@ -10,6 +10,7 @@ urlpatterns = [
     path('request-success/<int:request_id>/', views.request_success, name='request_success'),
     path('track_order/', views.track_order, name='track_order'),
     path('check-order/', check_order, name='check_order'),
+    path('panel/', views.client_panel, name='client_panel'),
 ]
 
 if settings.DEBUG:
