@@ -144,7 +144,10 @@ def update_order_status(request, order_id, new_status):
 
 def workshop_panel(request):
 
+    status = request.GET.get("status")
     orders = ContactRequest.objects.all().order_by("-created_at")
+    if status:
+        orders = orders.filter(status=status)
 
     pendientes = ContactRequest.objects.filter(status="pendiente").count()
     diagnostico = ContactRequest.objects.filter(status="diagnostico").count()
