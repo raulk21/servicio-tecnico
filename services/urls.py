@@ -11,6 +11,7 @@ urlpatterns = [
     path('track_order/', views.track_order, name='track_order'),
     path('check-order/', check_order, name='check_order'),
     path('panel/', views.client_panel, name='client_panel'),
+    path("orden/<str:order_number>/", views.order_detail, name="order_detail"),
 ]
 
 if settings.DEBUG:

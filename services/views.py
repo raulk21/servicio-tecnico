@@ -124,4 +124,11 @@ def client_panel(request):
         "orders": orders,
         "email": email
     })
+
+def order_detail(request, order_number):
+    order = get_object_or_404(ContactRequest, order_number=order_number)
+
+    return render(request, "services/order_detail.html", {
+        "order": order
+    })
 # Create your views here.

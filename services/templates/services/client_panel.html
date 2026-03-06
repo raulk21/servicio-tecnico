@@ -23,6 +23,9 @@
                 <td>{{ order.device }}</td>
                 <td>{{ order.status }}</td>
                 <td>{{ order.created_at }}</td>
+                <a href="{% url 'order_detail' order.order_number %}" class="btn btn-sm btn-dark">
+                    Ver detalle
+                </a>
             </tr>
             {% endfor %}
         </tbody>
