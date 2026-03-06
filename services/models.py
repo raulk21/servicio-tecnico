@@ -34,10 +34,10 @@ class ContactRequest(models.Model):
 
     order_number = models.CharField(max_length=20, unique=True, blank=True)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
-    
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=50)
     email = models.EmailField()
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
     message = models.TextField()
     image = models.ImageField(upload_to='contact_images/', blank=True, null=True)
 
@@ -48,6 +48,9 @@ class ContactRequest(models.Model):
     )
 
     created_at = models.DateTimeField(auto_now_add=True)
+
+    diagnostic = models.TextField(blank=True, null=True)
+    repair_cost = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
         return f"Orden {self.order_number} - {self.name}"

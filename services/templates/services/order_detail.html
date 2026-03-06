@@ -42,6 +42,53 @@
 
         <hr>
 
+        <h4>Cambiar estado de la orden</h4>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Nuevo estado</label>
+
+                <select name="status" class="form-select">
+
+                    <option value="pendiente"
+                        {% if order.status == "pendiente" %}selected{% endif %}>
+                        Pendiente
+                    </option>
+
+                    <option value="diagnostico"
+                        {% if order.status == "diagnostico" %}selected{% endif %}>
+                            Diagnóstico
+                    </option>
+
+                    <option value="proceso"
+                        {% if order.status == "proceso" %}selected{% endif %}>
+                            En proceso
+                    </option>
+
+                    <option value="espera"
+                        {% if order.status == "espera" %}selected{% endif %}>
+                            En espera repuesto
+                    </option>
+
+                    <option value="finalizado"
+                        {% if order.status == "finalizado" %}selected{% endif %}>
+                            Finalizado
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Actualizar estado
+            </button>
+
+        </form>
+
+        <hr>
+
         <h5>Cambiar estado</h5>
 
         <a href="{% url 'update_order_status' order.id 'pendiente' %}" class="btn btn-warning btn-sm">Pendiente</a>

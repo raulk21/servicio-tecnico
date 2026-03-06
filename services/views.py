@@ -155,7 +155,7 @@ def workshop_panel(request):
             Q(name__icontains=buscar) |
             Q(id__icontains=buscar)
         )
-        
+
     if status:
         orders = orders.filter(status=status)
     orders = orders.order_by("-created_at")
@@ -174,4 +174,20 @@ def workshop_panel(request):
         "espera": espera,
         "finalizado": finalizado
     })
+
+def update_order(request, order_id):
+
+    order = ContactRequest.objects.get(id=order_id)
+
+    if request.method == "POST":
+
+        order.status = request.POST.get("status")
+        order.diagnostic = request.POST.get("diagnostic")
+        order.repair_cost = request.POST.get("repair_cost")
+
+        order.save()
+
+    return render(request, "services/order_detail.html", {
+        "order": order
+    })    
 # Create your views here.

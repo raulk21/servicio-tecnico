@@ -144,6 +144,11 @@
                     </td>
                     <td>{{ order.created_at|date:"d/m/Y" }}</td>
                     <td>
+                        <a href="{% url 'order_detail' order.id %}" class="btn btn-primary">
+                            Ver / Editar
+                        </a>
+                    </td>
+                    <td>
                         <a href="/order/{{ order.order_number }}/" class="btn btn-sm btn-dark">
                             Ver
                         </a>
