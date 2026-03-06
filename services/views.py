@@ -146,7 +146,18 @@ def workshop_panel(request):
 
     orders = ContactRequest.objects.all().order_by("-created_at")
 
-    return render(request, "services/workshop_panel.html", {
-        "orders": orders
-    })    
+    pendientes = ContactRequest.objects.filter(status="pendiente").count()
+    diagnostico = ContactRequest.objects.filter(status="diagnostico").count()
+    proceso = ContactRequest.objects.filter(status="proceso").count()
+    espera = ContactRequest.objects.filter(status="espera").count()
+    finalizado = ContactRequest.objects.filter(status="finalizado").count()
+
+    return render(request, "services/panel_taller.html", {
+        "orders": orders,
+        "pendientes": pendientes,
+        "diagnostico": diagnostico,
+        "proceso": proceso,
+        "espera": espera,
+        "finalizado": finalizado
+    })
 # Create your views here.

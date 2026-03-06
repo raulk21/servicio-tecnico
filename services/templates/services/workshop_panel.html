@@ -4,6 +4,60 @@
 <div class="container mt-5">
     <h2 class="mb-4">Panel del Taller</h2>
     <div class="card shadow p-4">
+        
+        <div class="container mt-4">
+
+            <h2 class="mb-4">Panel del Taller</h2>
+
+            <div class="row text-center mb-4">
+
+                <div class="col-md-2">
+                    <div class="card bg-warning">
+                        <div class="card-body">
+                            <h5>Pendientes</h5>
+                            <h3>{{ pendientes }}</h3>
+                        </div>
+                    </div>
+                </div>  
+
+                <div class="col-md-2">
+                    <div class="card bg-info">
+                        <div class="card-body">
+                            <h5>Diagnóstico</h5>
+                            <h3>{{ diagnostico }}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">
+<                           h5>En reparación</h5>
+                            <h3>{{ proceso }}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card bg-secondary text-white">
+                        <div class="card-body">
+                            <h5>Esperando repuesto</h5>
+                            <h3>{{ espera }}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <h5>Finalizadas</h5>
+                            <h3>{{ finalizado }}</h3>
+                        </div>
+                    </div>
+                </div>
+
+    </div>
+        
         <table class="table table-striped table-hover">
             <thead class="table-dark">
                 <tr>
