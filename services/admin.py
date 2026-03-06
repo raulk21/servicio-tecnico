@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import Category, Service, ContactRequest, RepairUpdate
+from .models import RepairHistory
 
 # Register your models here.
 
@@ -31,3 +32,4 @@ class ContactRequestAdmin(admin.ModelAdmin):
 admin.site.register(Category)
 admin.site.register(Service)
 admin.site.register(RepairUpdate)
+admin.site.register(RepairHistory)

@@ -8,6 +8,26 @@
 
         <h2 class="mb-4">Detalle de Orden</h2>
 
+        <div class="progress mb-4" style="height:30px;">
+
+        {% if order.status == "pendiente" %}
+            <div class="progress-bar bg-warning" style="width:20%">Recibido</div>
+
+        {% elif order.status == "diagnostico" %}
+            <div class="progress-bar bg-info" style="width:40%">Diagnóstico</div>
+
+        {% elif order.status == "proceso" %}
+            <div class="progress-bar bg-primary" style="width:60%">En reparación</div>
+
+        {% elif order.status == "espera" %}
+            <div class="progress-bar bg-secondary" style="width:80%">Esperando repuesto</div>
+
+        {% elif order.status == "finalizado" %}
+            <div class="progress-bar bg-success" style="width:100%">Finalizado</div>
+
+    {% endif %}
+
+</div>
         <p><strong>Número de orden:</strong> {{ order.order_number }}</p>
         <p><strong>Cliente:</strong> {{ order.name }}</p>
         <p><strong>Email:</strong> {{ order.email }}</p>
@@ -27,6 +47,36 @@
             <strong>Imagen enviada:</strong><br>
             <img src="{{ order.image.url }}" class="img-fluid mt-2" style="max-width:300px;">
         </div>
+        {% endif %}
+
+        <hr>
+
+        <h4>Historial de reparación</h4>
+
+        {% if order.history.all %}
+
+          <ul class="list-group">
+
+            {% for item in order.history.all %}
+
+            <li class="list-group-item">
+
+              <strong>{{ item.created_at|date:"d M Y H:i" }}</strong>
+
+              <br>
+
+              {{ item.description }}
+
+            </li>
+
+            {% endfor %}
+
+          </ul>
+
+        {% else %}
+
+            <p>No hay historial aún.</p>
+
         {% endif %}
 
     </div>
