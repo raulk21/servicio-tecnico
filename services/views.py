@@ -141,4 +141,12 @@ def update_order_status(request, order_id, new_status):
     order.save()
 
     return redirect("order_detail", order_number=order.order_number)
+
+def workshop_panel(request):
+
+    orders = ContactRequest.objects.all().order_by("-created_at")
+
+    return render(request, "services/workshop_panel.html", {
+        "orders": orders
+    })    
 # Create your views here.

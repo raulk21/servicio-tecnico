@@ -1,0 +1,87 @@
+{% extends "services/base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">Panel del Taller</h2>
+
+    <div class="card shadow p-4">
+
+        <table class="table table-striped table-hover">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>Orden</th>
+                    <th>Cliente</th>
+                    <th>Servicio</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for order in orders %}
+
+                <tr>
+
+                    <td>{{ order.order_number }}</td>
+
+                    <td>
+                        {{ order.name }} <br>
+                        <small>{{ order.phone }}</small>
+                    </td>
+
+                    <td>{{ order.service.title }}</td>
+
+                    <td>
+
+                        {% if order.status == "pendiente" %}
+                            <span class="badge bg-warning text-dark">Pendiente</span>
+
+                        {% elif order.status == "diagnostico" %}
+                            <span class="badge bg-info text-dark">Diagnóstico</span>
+
+                        {% elif order.status == "proceso" %}
+                            <span class="badge bg-primary">En reparación</span>
+
+                        {% elif order.status == "espera" %}
+                            <span class="badge bg-secondary">Esperando repuesto</span>
+
+                        {% elif order.status == "finalizado" %}
+                            <span class="badge bg-success">Finalizado</span>
+                        {% endif %}
+
+                    </td>
+
+                    <td>{{ order.created_at|date:"d/m/Y" }}</td>
+
+                    <td>
+                        <a href="/order/{{ order.order_number }}/" class="btn btn-sm btn-dark">
+                            Ver
+                        </a>
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="6" class="text-center">
+                        No hay órdenes registradas
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
