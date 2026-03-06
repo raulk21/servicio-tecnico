@@ -12,6 +12,11 @@ urlpatterns = [
     path('check-order/', check_order, name='check_order'),
     path('panel/', views.client_panel, name='client_panel'),
     path("orden/<str:order_number>/", views.order_detail, name="order_detail"),
+    path(
+    "update-order/<int:order_id>/<str:new_status>/",
+    views.update_order_status,
+    name="update_order_status"
+),
 ]
 
 if settings.DEBUG:

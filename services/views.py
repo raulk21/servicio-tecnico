@@ -4,6 +4,7 @@ from .forms import ContactRequestForm
 from django.core.mail import send_mail
 from django.conf import settings
 from django.core.mail import EmailMessage
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 
@@ -131,4 +132,13 @@ def order_detail(request, order_number):
     return render(request, "services/order_detail.html", {
         "order": order
     })
+
+@staff_member_required
+def update_order_status(request, order_id, new_status):
+    
+    order = ContactRequest.objects.get(id=order_id)
+    order.status = new_status
+    order.save()
+
+    return redirect("order_detail", order_number=order.order_number)
 # Create your views here.
