@@ -152,7 +152,7 @@ def workshop_panel(request):
     espera = ContactRequest.objects.filter(status="espera").count()
     finalizado = ContactRequest.objects.filter(status="finalizado").count()
 
-    return render(request, "services/panel_taller.html", {
+    return render(request, "services/workshop_panel.html", {
         "orders": orders,
         "pendientes": pendientes,
         "diagnostico": diagnostico,
