@@ -35,6 +35,28 @@
                     <span class="badge bg-success fs-5">Finalizado</span>
                 {% endif %}
             </div>
+
+            <h3>Historial de reparación</h3>
+
+            {% if order.updates.all %}
+
+                <ul>
+                {% for update in order.updates.all %}
+                    <li>
+                    <strong>{{ update.status }}</strong>
+                    <br>
+                    {{ update.note }}
+                    <br>
+                    <small>{{ update.created_at }}</small>
+                    </li>
+                {% endfor %}
+                </ul>
+
+                {% else %}
+
+                    <p>No hay actualizaciones aún.</p>
+
+            {% endif %}
         {% endif %}
 
     </div>
