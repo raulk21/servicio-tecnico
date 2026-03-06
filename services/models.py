@@ -95,3 +95,18 @@ class RepairUpdate(models.Model):
 
     def __str__(self):
         return f"{self.order.order_number} - {self.status}"
+    
+class RepairHistory(models.Model):
+
+    order = models.ForeignKey(
+        ContactRequest,
+        on_delete=models.CASCADE,
+        related_name="history"
+    )
+
+    description = models.TextField()
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.order.order_number} - {self.created_at}"    
