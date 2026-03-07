@@ -7,44 +7,63 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 </head>
+
 <body>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
 
-    <a class="navbar-brand" href="/">Servicio Técnico</a>
+    <a class="navbar-brand fw-bold" href="/">
+      <i class="bi bi-cpu"></i> Servicio Técnico
+    </a>
 
-    <!-- Botón hamburguesa móvil -->
+    <!-- Botón móvil -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarMain">
 
-      <div class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
 
-        <a href="{% url 'workshop_panel' %}" class="btn btn-dark me-2 mb-2">
-          Panel del Taller
-        </a>
+        <li class="nav-item">
+          <a class="nav-link" href="/">
+            <i class="bi bi-house"></i> Inicio
+          </a>
+        </li>
 
-        <a href="/panel/" class="btn btn-success me-2 mb-2">
-          Panel cliente
-        </a>
+        <li class="nav-item">
+          <a class="nav-link" href="/">
+            <i class="bi bi-tools"></i> Servicios
+          </a>
+        </li>
 
-        <a href="/check-order/" class="btn btn-warning me-2 mb-2">
-          Consultar reparación
-        </a>
+        <li class="nav-item">
+          <a class="nav-link" href="/check-order/">
+            <i class="bi bi-search"></i> Consultar reparación
+          </a>
+        </li>
 
-        <a href="{% url 'track_order' %}" class="btn btn-outline-light mb-2">
-          Status reparación
-        </a>
+        <li class="nav-item">
+          <a class="btn btn-success ms-lg-3 mt-2 mt-lg-0" href="/panel/">
+            <i class="bi bi-person"></i> Panel cliente
+          </a>
+        </li>
 
-      </div>
+        <li class="nav-item">
+          <a class="btn btn-warning ms-lg-2 mt-2 mt-lg-0" href="{% url 'workshop_panel' %}">
+            <i class="bi bi-wrench"></i> Panel técnico
+          </a>
+        </li>
+
+      </ul>
 
     </div>
-
   </div>
 </nav>
 
