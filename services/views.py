@@ -153,11 +153,12 @@ def workshop_panel(request):
     if buscar:
         orders = orders.filter(
             Q(name__icontains=buscar) |
-            Q(id__icontains=buscar)
+            Q(id__startswith=buscar)
         )
 
     if status:
         orders = orders.filter(status=status)
+
     orders = orders.order_by("-created_at")
 
     pendientes = ContactRequest.objects.filter(status="pendiente").count()
