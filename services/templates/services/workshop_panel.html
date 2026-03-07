@@ -41,7 +41,7 @@
                 <div class="col-md-2">
                     <div class="card bg-secondary text-white">
                         <div class="card-body">
-                            <h5>Esperando repuesto</h5>
+                            <h5>Por repuesto</h5>
                             <h3>{{ espera }}</h3>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                         {% elif order.status == "proceso" %}
                             <span class="badge bg-primary">En reparación</span>
                         {% elif order.status == "espera" %}
-                            <span class="badge bg-secondary">Esperando repuesto</span>
+                            <span class="badge bg-secondary">Por repuesto</span>
                         {% elif order.status == "finalizado" %}
                             <span class="badge bg-success">Finalizado</span>
                         {% endif %}

@@ -144,24 +144,22 @@ def update_order_status(request, order_id, new_status):
     return redirect("order_detail", order_number=order.order_number)
 
 def workshop_panel(request):
-    status = request.GET.get("status")
-    search = request.GET.get("buscar")
 
-    orders = ContactRequest.objects.all()
+    orders = ContactRequest.objects.all().order_by("-created_at")
 
-    if status:
-        orders = orders.filter(status=status)
-
-    if search:
-        orders = orders.filter(name__icontains=search)
-
-    orders = orders.order_by("-created_at")
-
-    stats = ContactRequest.objects.values("status").annotate(total=Count("id"))
+    pending_count = ContactRequest.objects.filter(status="Pendiente").count()
+    diagnostic_count = ContactRequest.objects.filter(status="Diagnostico").count()
+    repair_count = ContactRequest.objects.filter(status="En reparación").count()
+    parts_count = ContactRequest.objects.filter(status="Esperando repuesto").count()
+    finished_count = ContactRequest.objects.filter(status="Finalizada").count()
 
     return render(request, "services/workshop_panel.html", {
         "orders": orders,
-        "stats": stats
+        "pending_count": pending_count,
+        "diagnostic_count": diagnostic_count,
+        "repair_count": repair_count,
+        "parts_count": parts_count,
+        "finished_count": finished_count
     })
 
 def update_order(request, order_id):
