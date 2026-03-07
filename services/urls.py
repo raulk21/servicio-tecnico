@@ -16,7 +16,7 @@ urlpatterns = [
     views.update_order_status,
     name="update_order_status"),
     path("panel-taller/", views.workshop_panel, name="workshop_panel"),
-    #path("order/<str:order_number>/", views.order_detail, name="order_detail"),
+    path("order/<str:order_number>/", views.order_detail, name="order_detail"),
     #path("order/<int:order_id>/", views.update_order, name="order_detail"),
 ]
 
