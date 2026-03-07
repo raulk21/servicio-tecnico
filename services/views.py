@@ -177,7 +177,7 @@ def workshop_panel(request):
 
 def update_order(request, order_id):
 
-    order = ContactRequest.objects.get(id=order_id)
+    order = get_object_or_404(ContactRequest, id=order_id)
 
     if request.method == "POST":
 
