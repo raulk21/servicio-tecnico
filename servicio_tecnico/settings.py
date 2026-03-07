@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ztf&aycrrk72%3i#d&9%gt2uwu&k(q2#zrpvfb2^xe2w5zjo#a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -137,3 +137,5 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 DEFAULT_FROM_EMAIL = f"Servicio Técnico <{os.environ.get('EMAIL_HOST_USER')}>"
+
+CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
