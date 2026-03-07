@@ -14,7 +14,7 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow-sm h-100">
                 {% if service.image %}
-                <img src="{{ service.image.url }}" class="img-fluid mb-3">
+                    <img src="{{ service.image.url }}"  alt="{{ service.title }}">
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">
@@ -29,6 +29,7 @@
                         {{ service.description|truncatewords:20 }}
                     </p>
                 </div>
+
                 <div class="card-footer">
                     <small class="text-muted">
                         Tiempo: {{ service.estimated_time }} <br>
