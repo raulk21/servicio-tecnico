@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("", views.home, name="home"),
+    path('service/<int:service_id>/', views.service_detail, name='service_detail'),
 
     # cliente
     path("track-order/", views.track_order, name="track_order"),
