@@ -1,5 +1,5 @@
 from django.shortcuts import render,  get_object_or_404, redirect
-from .models import Service, ContactRequest
+from .models import Service, ContactRequest, Count
 from .forms import ContactRequestForm
 from django.core.mail import send_mail
 from django.conf import settings
@@ -144,35 +144,24 @@ def update_order_status(request, order_id, new_status):
     return redirect("order_detail", order_number=order.order_number)
 
 def workshop_panel(request):
-
-    buscar = request.GET.get("buscar")
     status = request.GET.get("status")
-    orders = ContactRequest.objects.all()
+    search = request.GET.get("buscar")
 
-    # filtro por texto
-    if buscar:
-        orders = orders.filter(
-            Q(name__icontains=buscar) |
-            Q(id__icontains=buscar)
-        )
+    orders = ContactRequest.objects.all()
 
     if status:
         orders = orders.filter(status=status)
+
+    if search:
+        orders = orders.filter(name__icontains=search)
+
     orders = orders.order_by("-created_at")
 
-    pendientes = ContactRequest.objects.filter(status="pendiente").count()
-    diagnostico = ContactRequest.objects.filter(status="diagnostico").count()
-    proceso = ContactRequest.objects.filter(status="proceso").count()
-    espera = ContactRequest.objects.filter(status="espera").count()
-    finalizado = ContactRequest.objects.filter(status="finalizado").count()
+    stats = ContactRequest.objects.values("status").annotate(total=Count("id"))
 
     return render(request, "services/workshop_panel.html", {
         "orders": orders,
-        "pendientes": pendientes,
-        "diagnostico": diagnostico,
-        "proceso": proceso,
-        "espera": espera,
-        "finalizado": finalizado
+        "stats": stats
     })
 
 def update_order(request, order_id):
@@ -189,5 +178,5 @@ def update_order(request, order_id):
 
     return render(request, "services/order_detail.html", {
         "order": order
-    })    
+    })   
 # Create your views here.
