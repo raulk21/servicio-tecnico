@@ -14,7 +14,9 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow-sm h-100">
                 {% if service.image %}
-                    <img src="{{ service.image.url }}">
+                    <img src="/media/{{ service.image }}" 
+                    class="card-img-top"
+                    style="height:200px; object-fit:cover;">
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">
