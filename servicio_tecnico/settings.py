@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-ztf&aycrrk72%3i#d&9%gt2uwu&k(q2#zrpvfb2^xe2w5zjo#a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.onrender.com']
 # .onrender.com
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
