@@ -9,6 +9,96 @@
     <p class="lead">Diagnóstico y reparación profesional de placas electrónicas</p>
 </div>
 
+<div class="container mt-5">
+
+  <h2 class="text-center mb-4">Nuestros Servicios</h2>
+  <div class="container mt-5 mb-5">
+    <div class="text-center p-4 bg-light rounded shadow">
+        <h3 class="mb-3">Consulta el estado de tu reparación</h3>
+        <p>
+            Si tienes un equipo en servicio, puedes consultar el estado de tu reparación
+            ingresando tu correo electrónico en nuestro panel de clientes.
+        </p>
+        <a href="{% url 'client_panel' %}" class="btn btn-success btn-lg mt-3">
+            Consultar reparación
+        </a>
+
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Cómo funciona</h2>
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <div class="p-3 border rounded shadow-sm h-100">
+                        <h4>1️⃣ Trae tu equipo</h4>
+                            <p>
+                                Recibimos tu placa, Aire o Artefactos electricos para repararlos.
+                            </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="p-3 border rounded shadow-sm h-100">
+                        <h4>2️⃣ Diagnóstico</h4>
+                            <p>
+                            Revisamos el equipo y te informamos la falla y el costo de reparación.
+                            </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="p-3 border rounded shadow-sm h-100">
+                        <h4>3️⃣ Consulta en línea</h4>
+                        <p>
+                            Puedes revisar el estado de tu reparación en cualquier momento desde nuestro panel de clientes.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-4 mb-4">
+      <div class="card shadow h-100">
+        <div class="card-body text-center">
+          <h5 class="card-title">Aires Acondicionados</h5>
+          <p class="card-text">
+            Diagnóstico general, Instalación, Limpieza, Mantenimiento y reparación.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card shadow h-100">
+        <div class="card-body text-center">
+          <h5 class="card-title">Reparación de Placas electronicas</h5>
+          <p class="card-text">
+            Diagnostico general, Instalación y reparacion.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card shadow h-100">
+        <div class="card-body text-center">
+          <h5 class="card-title">Diagnóstico Técnico</h5>
+          <p class="card-text">
+            Revisamos tu equipo para detectar fallas y ofrecer la mejor solución.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
 <div class="row">
     {% for service in services %}
         <div class="col-md-4 mb-4">
