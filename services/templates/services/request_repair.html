@@ -1,0 +1,13 @@
+<div class="container mt-5">
+
+    <h2>Solicitar reparación</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} 
+
+        <button class="btn btn-primary">
+            Enviar solicitud
+        </button>
+    </form>
+</div>

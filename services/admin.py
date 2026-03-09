@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import Category, Service, ContactRequest, RepairUpdate
-from .models import RepairHistory
+from .models import RepairHistory, RepairRequest
 
 # Register your models here.
 
@@ -33,3 +33,4 @@ admin.site.register(Category)
 admin.site.register(Service)
 admin.site.register(RepairUpdate)
 admin.site.register(RepairHistory)
+admin.site.register(RepairRequest)

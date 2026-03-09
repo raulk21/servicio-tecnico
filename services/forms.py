@@ -1,5 +1,5 @@
 from django import forms
-from .models import ContactRequest
+from .models import ContactRequest, RepairRequest
 
 class ContactRequestForm(forms.ModelForm):
     class Meta:
@@ -12,3 +12,9 @@ class ContactRequestForm(forms.ModelForm):
             'message': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
             'image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
+
+class RepairRequestForm(forms.ModelForm):
+
+    class Meta:
+        model = RepairRequest
+        fields = ['name','email','phone','device','problem_description']

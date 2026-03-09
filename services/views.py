@@ -1,6 +1,6 @@
 from django.shortcuts import render,  get_object_or_404, redirect
 from .models import Service, ContactRequest
-from .forms import ContactRequestForm
+from .forms import ContactRequestForm, RepairRequestForm
 from django.core.mail import send_mail
 from django.conf import settings
 from django.core.mail import EmailMessage
@@ -190,5 +190,22 @@ def update_order(request, order_id):
 
     return render(request, "services/order_detail.html", {
         "order": order
-    })   
+    })
+
+from .forms import RepairRequestForm
+
+def request_repair(request):
+
+    if request.method == "POST":
+        form = RepairRequestForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            return render(request, "services/request_success.html")
+
+    else:
+        form = RepairRequestForm()
+
+    return render(request, "services/request_repair.html", {"form": form})
 # Create your views here.
