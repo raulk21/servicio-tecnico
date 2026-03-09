@@ -4,11 +4,16 @@
 
 {% block content %}
 
-<div class="text-center mb-5">
+<div class="bg-dark text-white text-center p-5 rounded mb-5">
     <h1 class="display-4 fw-bold">Servicio Técnico Electrónico</h1>
-    <p class="lead text-muted">
-        Diagnóstico y reparación profesional de placas electrónicas
+    <p class="lead">
+        Diagnóstico y reparación profesional de placas electrónicas,
+        aires acondicionados y equipos eléctricos.
     </p>
+
+    <a href="{% url 'client_panel' %}" class="btn btn-success btn-lg mt-3">
+        Consultar reparación
+    </a>
 </div>
 
 <div class="container mt-5">
@@ -29,8 +34,8 @@
             <h2 class="text-center mb-4">Cómo funciona</h2>
             <div class="row text-center">
                 <div class="col-12 col-md-4 mb-4">
-                    <div class="p-3 border rounded shadow-sm h-100">
-                        <h4>1️⃣ Trae tu equipo</h4>
+                    <div class="p-4 border rounded shadow-sm h-100">
+                        <h4 class="fw-bold">1️⃣ Trae tu equipo</h4>
                             <p>
                                 Recibimos tu placa, Aire o Artefactos electricos para repararlos.
                             </p>
@@ -65,7 +70,7 @@
     <div class="col-md-4 mb-4">
       <div class="card shadow h-100">
         <div class="card-body text-center">
-          <h5 class="card-title">Aires Acondicionados</h5>
+          <h5 class="card-title">❄️ Aires Acondicionados</h5>
           <p class="card-text">
             Diagnóstico general, Instalación, Limpieza, Mantenimiento y reparación.
           </p>
@@ -76,7 +81,7 @@
     <div class="col-md-4 mb-4">
       <div class="card shadow h-100">
         <div class="card-body text-center">
-          <h5 class="card-title">Reparación de Placas electronicas</h5>
+          <h5 class="card-title">🔧 Reparación de Placas Electrónicas</h5>
           <p class="card-text">
             Diagnostico general, Instalación y reparacion.
           </p>
@@ -87,7 +92,7 @@
     <div class="col-md-4 mb-4">
       <div class="card shadow h-100">
         <div class="card-body text-center">
-          <h5 class="card-title">Diagnóstico Técnico</h5>
+          <h5 class="card-title">🛠 Diagnóstico Técnico</h5>
           <p class="card-text">
             Revisamos tu equipo para detectar fallas y ofrecer la mejor solución.
           </p>
