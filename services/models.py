@@ -34,11 +34,10 @@ class ContactRequest(models.Model):
 
     order_number = models.CharField(max_length=20, unique=True, blank=True)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    phone = models.CharField(max_length=50)
-    email = models.EmailField()
-    service = models.ForeignKey(Service, on_delete=models.CASCADE)
-    message = models.TextField()
+    name = models.CharField(max_length=100, verbose_name="Nombre")
+    phone = models.CharField(max_length=50, verbose_name="Teléfono")
+    email = models.EmailField(verbose_name="Correo electrónico")
+    message = models.TextField(verbose_name="Descripción del problema")
     image = models.ImageField(upload_to='contact_images/', blank=True, null=True)
 
     status = models.CharField(
@@ -61,7 +60,7 @@ class ContactRequest(models.Model):
         if self.pk:
             old = ContactRequest.objects.get(pk=self.pk)
 
-            if old.status != self.status:
+            if old and old.status != self.status:
                  send_mail(
                 subject=f"Actualización de tu orden {self.order_number}",
                 message=f"""
@@ -116,13 +115,13 @@ class RepairHistory(models.Model):
     
 class RepairRequest(models.Model):
 
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
-    phone = models.CharField(max_length=20)
+    name = models.CharField(max_length=100, verbose_name="Nombre")
+    email = models.EmailField(verbose_name="Correo electrónico")
+    phone = models.CharField(max_length=20, verbose_name="Telefóno")
 
-    device = models.CharField(max_length=100)
+    device = models.CharField(max_length=100, verbose_name="Equipo")
 
-    problem_description = models.TextField()
+    problem_description = models.TextField(verbose_name="Descripción del problema")
 
     created_at = models.DateTimeField(auto_now_add=True)
 

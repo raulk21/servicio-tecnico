@@ -192,8 +192,6 @@ def update_order(request, order_id):
         "order": order
     })
 
-from .forms import RepairRequestForm
-
 def request_repair(request):
 
     if request.method == "POST":

@@ -4,38 +4,37 @@
 
 {% block content %}
 
-<div class="bg-dark text-white text-center p-5 rounded mb-5">
-    <h1 class="display-4 fw-bold">Servicio Técnico Electrónico</h1>
-    <p class="lead">
+<div class="bg-dark text-white text-center p-5 p-md-6 rounded mb-5">
+
+    <h1 class="display-4 fw-bold mb-3">
+        Servicio Técnico Electrónico
+    </h1>
+
+    <p class="lead mb-4">
         Diagnóstico y reparación profesional de placas electrónicas,
         aires acondicionados y equipos eléctricos.
     </p>
 
-    <a href="{% url 'client_panel' %}" class="btn btn-success btn-lg mt-3">
-        Consultar reparación
-    </a>
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
 
-    <a href="{% url 'request_repair' %}" class="btn btn-primary btn-lg">
-        Solicitar reparación
-    </a>
+        <a href="{% url 'client_panel' %}" class="btn btn-success btn-lg">
+            Consultar reparación
+        </a>
+                
+        <a href="#servicios" class="btn btn-outline-light btn-lg">
+
+            Solicitar servicio
+        </a> 
+
+    </div>
+
 </div>
 
 <div class="container mt-5">
-  <h2 class="text-center mb-4">Nuestros Servicios</h2>
-  
-    <div class="text-center p-4 bg-light rounded shadow">
-        <h3 class="mb-3">Consulta el estado de tu reparación</h3>
-        <p>
-            Si tienes un equipo en servicio, puedes consultar el estado de tu reparación
-            ingresando tu correo electrónico en nuestro panel de clientes.
-        </p>
-        <a href="{% url 'client_panel' %}" class="btn btn-success btn-lg mt-3">
-            Consultar reparación
-        </a>
-    </div>    
+  <h2 class="text-center mb-4">Nuestros Servicios, ¿Como funciona?</h2>
 
     <div class="mt-5">
-            <h2 class="text-center mb-4">Cómo funciona</h2>
+             
             <div class="row text-center">
                 <div class="col-12 col-md-4 mb-4">
                     <div class="p-4 border rounded shadow-sm h-100">
@@ -68,8 +67,49 @@
 
         </div>
   </div>
-  <div class="row">
+  <!---->
+  <div class="container mt-5">
 
+    <h2 class="text-center mb-4">¿Por qué elegirnos?</h2>
+
+    <div class="row text-center">
+
+        <div class="col-12 col-md-4 mb-4">
+            <div class="p-4 border rounded shadow-sm h-100">
+                <h4>🔧 Técnicos especializados</h4>
+                <p>
+                    Contamos con experiencia en diagnóstico y reparación de
+                    placas electrónicas y equipos eléctricos.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4 mb-4">
+            <div class="p-4 border rounded shadow-sm h-100">
+                <h4>⚡ Diagnóstico profesional</h4>
+                <p>
+                    Analizamos cada equipo para identificar la falla real
+                    y ofrecer la mejor solución.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4 mb-4">
+            <div class="p-4 border rounded shadow-sm h-100">
+                <h4>📱 Seguimiento en línea</h4>
+                <p>
+                    Puedes consultar el estado de tu reparación
+                    desde nuestro panel de clientes en cualquier momento.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+  <!---->
+
+  <div class="row">
     <div class="col-12 col-md-4 mb-4">
       <div class="card shadow h-100 border-0">
         <div class="card-body text-center">
@@ -105,7 +145,7 @@
 
 </div>
 
-<div class="row">
+<div class="row" id="servicios">
     {% for service in services %}
         <div class="col-md-4 mb-4">
             <div class="card shadow-sm h-100">
@@ -138,5 +178,40 @@
         </div>
     {% endfor %}
 </div>
+<div class="container mt-5 mb-5">
 
+    <h2 class="text-right mb-4">Contacto y Ubicación</h2>
+
+    <div class="row">
+
+        <div class="col-12 col-md-6">
+
+            <h5>📍 Dirección</h5>
+            <p>
+                Triunvirato 2051, Quilmes Oeste.
+            </p>
+
+            <h5>📞 Teléfono</h5>
+            <p>
+                +54 91150410180
+            </p>
+
+            <h5>💬 WhatsApp</h5>
+            <p>
+                <a href="https://wa.me/+549 1150410180" class="btn btn-success">
+                    Contactar por WhatsApp
+                </a>
+            </p>
+
+            <h5>🕒 Horario</h5>
+            <p>
+                Lunes a Viernes: 8:00 AM – 6:00 PM <br>
+                Sábados: 9:00 AM – 2:00 PM
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
 {% endblock %}

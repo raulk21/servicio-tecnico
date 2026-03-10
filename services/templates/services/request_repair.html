@@ -1,13 +1,45 @@
+{% extends 'services/base.html' %}
+
+{% block title %}{{ service.title }}{% endblock %}
+
+{% block content %}
 <div class="container mt-5">
+    <div class="card shadow p-4">
+        <h2 class="mb-4">Solicitar reparación</h2>
 
-    <h2>Solicitar reparación</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }} 
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                {{ form.name }}
+            </div>
 
-        <button class="btn btn-primary">
-            Enviar solicitud
-        </button>
-    </form>
+            <div class="mb-3">
+                <label class="form-label">Correo electrónico</label>
+                {{ form.email }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Teléfono</label>
+                {{ form.phone }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Equipo</label>
+                {{ form.service }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Descripción del problema</label>
+                {{ form.message }}
+            </div>
+
+            <button class="btn btn-primary">
+                Enviar solicitud
+            </button>
+
+        </form>
+    </div>
 </div>
+{% endblock %}  

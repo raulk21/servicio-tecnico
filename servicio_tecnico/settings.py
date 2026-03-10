@@ -162,11 +162,13 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+#EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+#EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = "servicio.tecnico.elect21@gmail.com"
+EMAIL_HOST_PASSWORD = "hnsmektgfsylayyw"
 
-DEFAULT_FROM_EMAIL = f"Servicio Técnico <{os.environ.get('EMAIL_HOST_USER')}>"
-
+#DEFAULT_FROM_EMAIL = f"Servicio Técnico <{os.environ.get('EMAIL_HOST_USER')}>"
+DEFAULT_FROM_EMAIL = f"Servicio Técnico <{EMAIL_HOST_USER}>"
 CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com',]
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
